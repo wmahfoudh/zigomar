@@ -110,7 +110,7 @@ TimeGet endp
 
 
 MakeRegions proc hWnd:HWND
-	;
+	
 	invoke CreateRectRgn,62,30,70,38
 	mov hRegion,eax
 	invoke CreateRectRgn,62,20,70,28
@@ -125,7 +125,7 @@ MakeRegions proc hWnd:HWND
 	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
 	invoke CreateRectRgn,52,10,60,18
 	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-	;
+	
 	invoke CreateRectRgn,36,30,44,38
 	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
 	invoke CreateRectRgn,36,20,44,28
@@ -140,7 +140,7 @@ MakeRegions proc hWnd:HWND
 	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
 	invoke CreateRectRgn,26,10,34,18
 	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-	;
+	
 	invoke CreateRectRgn,10,30,18,38
 	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
 	invoke CreateRectRgn,10,20,18,28
@@ -153,7 +153,7 @@ MakeRegions proc hWnd:HWND
 	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
 	invoke CreateRectRgn,0,20,8,28
 	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-	;
+	
 	invoke SetWindowRgn,hWnd,hRegion,0
 	Ret
 MakeRegions endp
@@ -231,8 +231,8 @@ WinMain proc hInst:HINSTANCE,hPrevInst:HINSTANCE,CmdLine:LPSTR,CmdShow:DWORD
 	mov wc.hIconSm,eax
 	invoke LoadCursor,NULL,IDC_ARROW
 	mov wc.hCursor,eax
-	;
-	;loading bitmaps
+	
+	; loading bitmaps
 	invoke LoadBitmap,hInst,BMP_B0
 	mov hBMP_B0,eax
 	invoke LoadBitmap,hInst,BMP_B1
@@ -248,13 +248,13 @@ WinMain proc hInst:HINSTANCE,hPrevInst:HINSTANCE,CmdLine:LPSTR,CmdShow:DWORD
 	invoke LoadBitmap,hInst,BMP_R1
 	mov hBMP_R1,eax
 	
-	;class registration and window creation
+	; class registration and window creation
 	invoke RegisterClassEx, addr wc
 	invoke CreateWindowEx,WS_EX_NOACTIVATE + WS_EX_TOPMOST + WS_EX_TOOLWINDOW ,ADDR ClassName,ADDR AppName,
            WS_POPUP + WS_VISIBLE,CW_USEDEFAULT,CW_USEDEFAULT,70,38,NULL,NULL,hInst,NULL
      	mov hwnd,eax
 
-	;popup menu creation
+	; popup menu creation
 	invoke CreatePopupMenu
 	mov hClockMenu,eax
 	invoke AppendMenu,hClockMenu,MF_STRING,IDM_RED,addr MNU_RedThm
@@ -268,14 +268,14 @@ WinMain proc hInst:HINSTANCE,hPrevInst:HINSTANCE,CmdLine:LPSTR,CmdShow:DWORD
 	invoke AppendMenu,hPopupMenu,MF_SEPARATOR,NULL,NULL
 	invoke AppendMenu,hPopupMenu,MF_STRING,IDM_QUIT,addr MNU_Close
 		
-	;init appearance
+	; init appearance
 	invoke ChangeCell,IDM_GREEN
 	invoke ModifyMenu,hClockMenu,IDM_GREEN,MF_STRING + MF_CHECKED,IDM_GREEN,addr MNU_GrnThm
 	
-	;show window and initialize menu
+	; show window and initialize menu
 	invoke GoToTray,hwnd,SW_NORMAL
 
-	;message loop
+	; message loop
 	.while TRUE
 		invoke GetMessage, ADDR msg,NULL,0,0
 		.BREAK .IF (!eax)
@@ -283,7 +283,7 @@ WinMain proc hInst:HINSTANCE,hPrevInst:HINSTANCE,CmdLine:LPSTR,CmdShow:DWORD
 		invoke DispatchMessage, ADDR msg
 	.endw
 
-	;end
+	; end
 	mov eax,msg.wParam
 	ret
 WinMain endp
@@ -315,18 +315,16 @@ WndProc proc hWnd:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARAM
 		invoke SendMessage,hWnd,WM_PAINT,NULL,NULL
 	
 	.elseif uMsg==WM_PAINT
-	
-	    invoke BeginPaint,hWnd,addr ps 
-      	mov hDC,eax 
-     	invoke CreateCompatibleDC,hDC 
-     	mov hMemDC,eax
-     	invoke SelectObject,hMemDC,hPT
-      	invoke GetClientRect,hWnd,addr rect    	
-	
-	mov eax,hCellOFF
-    	test S0,1
-    	jz @LS1
-	mov eax,hCellON
+	    	invoke BeginPaint,hWnd,addr ps 
+      		mov hDC,eax 
+     		invoke CreateCompatibleDC,hDC 
+     		mov hMemDC,eax
+     		invoke SelectObject,hMemDC,hPT
+      		invoke GetClientRect,hWnd,addr rect
+		mov eax,hCellOFF
+    		test S0,1
+    		jz @LS1
+		mov eax,hCellON
     	@LS1:
    		invoke SelectObject,hMemDC,eax
     		invoke BitBlt,hDC,62,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY

@@ -108,7 +108,6 @@ TimeGet proc
 	Ret
 TimeGet endp
 
-
 MakeRegions proc hWnd:HWND
 	
 	invoke CreateRectRgn,62,30,70,38

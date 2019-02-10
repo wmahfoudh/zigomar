@@ -16,7 +16,7 @@ IDI_TRAY 			equ 0
 IDM_RED 			equ 10011
 IDM_GREEN 			equ 10012
 IDM_BLUE 			equ 10013
-IDM_SH_CLOCK 		equ 10015
+IDM_SH_CLOCK 			equ 10015
 IDM_QUIT 			equ 10030
 BMP_B0				equ 300
 BMP_B1				equ 310
@@ -24,7 +24,7 @@ BMP_G0				equ 400
 BMP_G1				equ 410
 BMP_R0				equ 500
 BMP_R1				equ 510
-MUTEX_ALL_ACCESS	equ 1F0001h
+MUTEX_ALL_ACCESS		equ 1F0001h
 
 WinMain PROTO :DWORD,:DWORD,:DWORD,:DWORD
 
@@ -52,16 +52,16 @@ hBMP_R0			dd ?
 hBMP_R1			dd ?
 hBMP_G0			dd ?
 hBMP_G1			dd ?
-S0				dw ?
-S1				dw ?
-M0				dw ?
-M1				dw ?
-H0				dw ?
-H1				dw ?
+S0			dw ?
+S1			dw ?
+M0			dw ?
+M1			dw ?
+H0			dw ?
+H1			dw ?
 toDay			dw ?
 hCellOFF		dd ?
 hCellON			dd ?
-hPT				dd ?
+hPT			dd ?
 hMutex			dd ?
 
 TimeNow			SYSTEMTIME <>	; Current time
@@ -80,7 +80,7 @@ start:
 	invoke ExitProcess,eax
 	
 TimeGet proc
-	invoke   GetLocalTime, ADDR TimeNow
+	invoke GetLocalTime, ADDR TimeNow
 	mov cx,10
 	mov ax,TimeNow.wHour
 	div cl
@@ -110,51 +110,51 @@ TimeGet endp
 
 
 MakeRegions proc hWnd:HWND
-
-		invoke CreateRectRgn,62,30,70,38
-		mov hRegion,eax
-		invoke CreateRectRgn,62,20,70,28
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
-		invoke CreateRectRgn,62,10,70,18
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,62,0,70,8
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,52,30,60,38
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,52,20,60,28
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,52,10,60,18
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		;
-		invoke CreateRectRgn,36,30,44,38
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
-		invoke CreateRectRgn,36,20,44,28
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
-		invoke CreateRectRgn,36,10,44,18
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,36,0,44,8
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,26,30,34,38
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,26,20,34,28
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,26,10,34,18
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		;
-		invoke CreateRectRgn,10,30,18,38
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
-		invoke CreateRectRgn,10,20,18,28
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
-		invoke CreateRectRgn,10,10,18,18
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,10,0,18,8
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,0,30,8,38
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		invoke CreateRectRgn,0,20,8,28
-		invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
-		;
-		invoke SetWindowRgn,hWnd,hRegion,0
+	;
+	invoke CreateRectRgn,62,30,70,38
+	mov hRegion,eax
+	invoke CreateRectRgn,62,20,70,28
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
+	invoke CreateRectRgn,62,10,70,18
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,62,0,70,8
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,52,30,60,38
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,52,20,60,28
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,52,10,60,18
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	;
+	invoke CreateRectRgn,36,30,44,38
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
+	invoke CreateRectRgn,36,20,44,28
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
+	invoke CreateRectRgn,36,10,44,18
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,36,0,44,8
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,26,30,34,38
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,26,20,34,28
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,26,10,34,18
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	;
+	invoke CreateRectRgn,10,30,18,38
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
+	invoke CreateRectRgn,10,20,18,28
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR
+	invoke CreateRectRgn,10,10,18,18
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,10,0,18,8
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,0,30,8,38
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	invoke CreateRectRgn,0,20,8,28
+	invoke CombineRgn,hRegion,hRegion,eax,RGN_OR	
+	;
+	invoke SetWindowRgn,hWnd,hRegion,0
 	Ret
 MakeRegions endp
 
@@ -179,12 +179,12 @@ GoToTray endp
 
 PainCell proc hMemDC:HDC,hDC:DWORD,X:WORD,Y:WORD,rect:RECT,hCell0:DWORD,hCell1:DWORD
 	mov 	eax,hCell0
-    test   	S0,1
-    jz 	   	@LS0
+	test   	S0,1
+	jz 	   	@LS0
 	mov 	eax,hCell1
-    @LS0:
-    invoke 	SelectObject,hMemDC,eax
-    invoke 	BitBlt,HDC ptr hDC,X,Y,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+	@LS0:
+	invoke 	SelectObject,hMemDC,eax
+	invoke 	BitBlt,HDC ptr hDC,X,Y,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
 	Ret
 PainCell endp
 
@@ -212,47 +212,47 @@ WinMain proc hInst:HINSTANCE,hPrevInst:HINSTANCE,CmdLine:LPSTR,CmdShow:DWORD
 	LOCAL wc:WNDCLASSEX
 	LOCAL msg:MSG
 	LOCAL hwnd:HWND
+	
+	; class init
+	mov wc.cbSize,SIZEOF WNDCLASSEX
+	mov wc.style, CS_HREDRAW or CS_VREDRAW or CS_DBLCLKS
+	mov wc.lpfnWndProc, OFFSET WndProc
+	mov wc.cbClsExtra,NULL
+	mov wc.cbWndExtra,NULL
+	push hInst
+	pop wc.hInstance
+	mov wc.hbrBackground,COLOR_APPWORKSPACE
+	mov wc.lpszMenuName,NULL
+	mov wc.lpszClassName,OFFSET ClassName
 
-	;class init
-	mov   wc.cbSize,SIZEOF WNDCLASSEX
-	mov   wc.style, CS_HREDRAW or CS_VREDRAW or CS_DBLCLKS
-	mov   wc.lpfnWndProc, OFFSET WndProc
-	mov   wc.cbClsExtra,NULL
-	mov   wc.cbWndExtra,NULL
-	push  hInst
-	pop   wc.hInstance
-	mov   wc.hbrBackground,COLOR_APPWORKSPACE
-	mov   wc.lpszMenuName,NULL
-	mov   wc.lpszClassName,OFFSET ClassName
-
-	;icon and cursor load
+	; icon and cursor load
 	invoke LoadIcon,hInst,200
-	mov   wc.hIcon,eax
-	mov   wc.hIconSm,eax
+	mov wc.hIcon,eax
+	mov wc.hIconSm,eax
 	invoke LoadCursor,NULL,IDC_ARROW
-	mov	  wc.hCursor,eax
-
+	mov wc.hCursor,eax
+	;
 	;loading bitmaps
-	invoke  LoadBitmap,hInst,BMP_B0
+	invoke LoadBitmap,hInst,BMP_B0
 	mov hBMP_B0,eax
-	invoke  LoadBitmap,hInst,BMP_B1
+	invoke LoadBitmap,hInst,BMP_B1
 	mov hBMP_B1,eax
 	
-	invoke  LoadBitmap,hInst,BMP_G0
+	invoke LoadBitmap,hInst,BMP_G0
 	mov hBMP_G0,eax
-	invoke  LoadBitmap,hInst,BMP_G1
+	invoke LoadBitmap,hInst,BMP_G1
 	mov hBMP_G1,eax
 	
-	invoke  LoadBitmap,hInst,BMP_R0
+	invoke LoadBitmap,hInst,BMP_R0
 	mov hBMP_R0,eax
-	invoke  LoadBitmap,hInst,BMP_R1
+	invoke LoadBitmap,hInst,BMP_R1
 	mov hBMP_R1,eax
 	
 	;class registration and window creation
 	invoke RegisterClassEx, addr wc
 	invoke CreateWindowEx,WS_EX_NOACTIVATE + WS_EX_TOPMOST + WS_EX_TOOLWINDOW ,ADDR ClassName,ADDR AppName,
            WS_POPUP + WS_VISIBLE,CW_USEDEFAULT,CW_USEDEFAULT,70,38,NULL,NULL,hInst,NULL
-     mov   hwnd,eax
+     	mov hwnd,eax
 
 	;popup menu creation
 	invoke CreatePopupMenu
@@ -317,172 +317,152 @@ WndProc proc hWnd:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARAM
 	.elseif uMsg==WM_PAINT
 	
 	    invoke BeginPaint,hWnd,addr ps 
-      	mov    hDC,eax 
+      	mov hDC,eax 
      	invoke CreateCompatibleDC,hDC 
-     	mov    hMemDC,eax
+     	mov hMemDC,eax
      	invoke SelectObject,hMemDC,hPT
       	invoke GetClientRect,hWnd,addr rect    	
 	
-		mov 	eax,hCellOFF
-    	test   	S0,1
-    	jz 	   	@LS1
-		mov 	eax,hCellON
+	mov eax,hCellOFF
+    	test S0,1
+    	jz @LS1
+	mov eax,hCellON
     	@LS1:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,62,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-    		
-		mov 	eax,hCellOFF
-    	test   	S0,2
-    	jz 	   	@LS2
-		mov 	eax,hCellON
+   		invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,62,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test S0,2
+    		jz @LS2
+		mov eax,hCellON
     	@LS2:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,62,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	S0,4
-    	jz 	   	@LS3
-		mov 	eax,hCellON
+   		invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,62,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test S0,4
+    		jz @LS3
+		mov eax,hCellON
     	@LS3:
    	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,62,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-    	    	    	      			
-		mov 	eax,hCellOFF
-    	test   	S0,8
-    	jz 	   	@LS4
-		mov 	eax,hCellON
+    		invoke 	BitBlt,hDC,62,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY      			
+		mov eax,hCellOFF
+    		test S0,8
+    		jz @LS4
+		mov eax,hCellON
     	@LS4:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,62,0,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	S1,1
-    	jz 	   	@HS1
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,62,0,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test S1,1
+    		jz @HS1
+		mov eax,hCellON
     	@HS1:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,52,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	S1,2
-    	jz 	   	@HS2
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,52,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test S1,2
+    		jz @HS2
+		mov eax,hCellON
     	@HS2:
    	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,52,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	S1,4
-    	jz 	   	@HS3
-		mov 	eax,hCellON
+    		invoke 	BitBlt,hDC,52,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test S1,4
+    		jz @HS3
+		mov eax,hCellON
     	@HS3:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,52,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	M0,1
-    	jz 	   	@LM1
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,52,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test M0,1
+    		jz @LM1
+		mov eax,hCellON
     	@LM1:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,36,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	M0,2
-    	jz 	   	@LM2
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,36,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test M0,2
+    		jz @LM2
+		mov eax,hCellON
     	@LM2:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,36,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	M0,4
-    	jz 	   	@LM3
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,36,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test M0,4
+    		jz @LM3
+		mov eax,hCellON
     	@LM3:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,36,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-    	
-		mov 	eax,hCellOFF
-    	test   	M0,8
-    	jz 	   	@LM4
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,36,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test M0,8
+    		jz @LM4
+		mov eax,hCellON
     	@LM4:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,36,0,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	M1,1
-    	jz 	   	@HM1
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,36,0,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test M1,1
+    		jz @HM1
+		mov eax,hCellON
     	@HM1:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,26,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	M1,2
-    	jz 	   	@HM2
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,26,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test M1,2
+    		jz @HM2
+		mov eax,hCellON
     	@HM2:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,26,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	M1,4
-    	jz 	   	@HM3
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,26,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test M1,4
+    		jz @HM3
+		mov eax,hCellON
     	@HM3:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,26,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	H0,1
-    	jz 	   	@LH1
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,26,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test H0,1
+    		jz @LH1
+		mov eax,hCellON
     	@LH1:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,10,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	H0,2
-    	jz 	   	@LH2
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,10,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test H0,2
+    		jz @LH2
+		mov eax,hCellON
     	@LH2:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,10,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	H0,4
-    	jz 	   	@LH3
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,10,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test H0,4
+    		jz @LH3
+		mov eax,hCellON
     	@LH3:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,10,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	H0,8
-    	jz 	   	@LH4
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,10,10,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test H0,8
+    		jz @LH4
+		mov eax,hCellON
     	@LH4:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,10,0,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	H1,1
-    	jz 	   	@HH1
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,10,0,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test H1,1
+    		jz @HH1
+		mov eax,hCellON
     	@HH1:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,0,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
-		mov 	eax,hCellOFF
-    	test   	H1,2
-    	jz 	   	@HH2
-		mov 	eax,hCellON
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,0,30,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
+		mov eax,hCellOFF
+    		test H1,2
+    		jz @HH2
+		mov eax,hCellON
     	@HH2:
-   	 	invoke 	SelectObject,hMemDC,eax
-    	invoke 	BitBlt,hDC,0,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
-
+   	 	invoke SelectObject,hMemDC,eax
+    		invoke BitBlt,hDC,0,20,rect.right,rect.bottom,hMemDC,0,0,SRCCOPY
 		invoke EndPaint,hWnd,addr ps
 		invoke DeleteDC,hMemDC
 		invoke DeleteDC,hDC

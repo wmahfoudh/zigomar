@@ -12,19 +12,19 @@ includelib shell32.lib
 includelib gdi32.lib
 
 WM_SHELLNOTIFY equ WM_USER+5
-IDI_TRAY 			equ 0
-IDM_RED 			equ 10011
-IDM_GREEN 			equ 10012
-IDM_BLUE 			equ 10013
-IDM_SH_CLOCK 			equ 10015
-IDM_QUIT 			equ 10030
-BMP_B0				equ 300
-BMP_B1				equ 310
-BMP_G0				equ 400
-BMP_G1				equ 410
-BMP_R0				equ 500
-BMP_R1				equ 510
-MUTEX_ALL_ACCESS		equ 1F0001h
+IDI_TRAY		equ 0
+IDM_RED			equ 10011
+IDM_GREEN		equ 10012
+IDM_BLUE		equ 10013
+IDM_SH_CLOCK		equ 10015
+IDM_QUIT		equ 10030
+BMP_B0			equ 300
+BMP_B1			equ 310
+BMP_G0			equ 400
+BMP_G1			equ 410
+BMP_R0			equ 500
+BMP_R1			equ 510
+MUTEX_ALL_ACCESS	equ 1F0001h
 
 WinMain PROTO :DWORD,:DWORD,:DWORD,:DWORD
 

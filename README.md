@@ -15,3 +15,5 @@ To make obj files and link them, use the **masm32** SDK, which you can download 
 - assemble the source with ``ml /c /coff /Cp /I "d:\masm32\include" /nologo zigomar.asm``, this will generate ``zigomar.obj``
 - compile the resources by typing ``rc res.rc``, this will generate ``res.RES`` 
 - ``link /SUBSYSTEM:WINDOWS /RELEASE /VERSION:4.0 /LIBPATH:"D:\masm32\lib" zigomar.obj res.RES`` will link the generated files
+# Comments
+Certain parts of the program (the drawing part) could be replaced by functions (PROC) but in assembly we bend generally towards performance rather than respecting paradigms created later for other languages. Future extensions could implement such changes if justified

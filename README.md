@@ -1,5 +1,5 @@
 # Zigomar
-A **Binary Clock** demo written in Win32 assembly language
+A **Binary Clock** written in Win32 assembly language
 ![Zigomar](./source/res/binary_clock.png)
 # Techniques implemented
 - unique instance using *Mutex*
